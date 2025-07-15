@@ -1,5 +1,6 @@
 # 15th of July, 2025
 # Practice commands in Powershell
+# ls, cd, pwd (Searching Command)
 PS C:\Users\Administrator> cd /Develops
 PS C:\Develops> ls
 
@@ -48,3 +49,25 @@ Mode                 LastWriteTime         Length Name
 ----                 -------------         ------ ----
 d-----      2025-07-15  오전 10:22                Downloads
 d-----      2025-07-15   오전 8:33                VMs
+
+#mkdir [Making Directory Command]
+PS C:\Develops\temp_dir> mkdir dir_first
+
+
+    디렉터리: C:\Develops\temp_dir
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----      2025-07-15   오후 2:22                dir_first
+
+PS C:\Develops\temp_dir> ls
+
+
+    디렉터리: C:\Develops\temp_dir
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----      2025-07-15   오후 2:22                dir_first
+-a----      2025-07-15   오후 2:24              0 file_first.txt
