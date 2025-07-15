@@ -284,7 +284,7 @@ Mode                 LastWriteTime         Length Name
 -a----      2025-07-15   오후 3:47             10 picture1.jpg
 ```
 ### 문제 3-3: 폴더 이름 변경
-temp 폴더의 이름을 temporary로 변경하세요
+- temp 폴더의 이름을 temporary로 변경하세요
 ```shell
 PS C:\Develops\Quests\powershell_practice> ls
 
@@ -433,7 +433,7 @@ d-----      2025-07-15   오후 4:10                images
 ```
 ## 🚀 Level 5: 종합 응용
 ### 문제 5-1: 프로젝트 구조 만들기
-다음과 같은 프로젝트 구조를 생성하세요:
+- 다음과 같은 프로젝트 구조를 생성하세요:
 ```
 my_project/
 ├── src/
