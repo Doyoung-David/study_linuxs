@@ -4,4 +4,4 @@
 ### 연습 목록 
 - [Shell Command Practice](codes/10_powershells.sh)
 ### 과제 목록
-- [File & Directory Mainpulation](codes/quests/basic_linux_commands.md)
+- [File & Directory Manipulation](codes/quests/basic_linux_commands.md)
