@@ -296,6 +296,15 @@ practice/
 [doyoung@localhost documents]$ mkdir notes
 [doyoung@localhost documents]$ cd reports
 [doyoung@localhost reports]$ mkdir ls
+[doyoung@localhost reports]$ cd /home/doyoung/practice
+[doyoung@localhost practice]$ tree
+.
+├── backup
+├── documents
+│   ├── notes
+│   └── reports
+│       └── ls
+└── images
 ```
 ## 2-2. 파일 생성 및 내용 작성
 1. practice/documents/ 디렉터리에 readme.txt 파일을 생성하고 "Hello Linux!"라는 내용을 작성하시오.
