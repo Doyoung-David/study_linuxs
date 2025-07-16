@@ -25,9 +25,7 @@ doyoung
 ```
 2. 숨김 파일을 포함한 모든 파일의 상세 정보를 출력하시오.
 ```shell
-[doyoung@localhost home]$ ls -l
-total 4
-drwx------. 14 doyoung doyoung 4096 Jul 16 10:53 doyoung
+[doyoung@localhost home]$ ls -a
 ```
 3. /etc 디렉터리의 내용을 확인하시오.
 ```shell
