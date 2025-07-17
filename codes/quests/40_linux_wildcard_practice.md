@@ -106,7 +106,7 @@ ls -l *.{txt,log}
 
 ### 5-1. 파일명이 `test`로 시작하지 않는 모든 `.log` 파일 출력
 ```bash
-ls -l [!t]*[!t]*.log
+ls -l [!t]*[!t].log
 ```
 
 ### 5-2. 모든 이미지 파일 (jpg, png, gif)을 `docs` 디렉터리로 이동
