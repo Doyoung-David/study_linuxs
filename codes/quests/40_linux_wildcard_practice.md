@@ -116,7 +116,7 @@ mv *.{jpg,png,gif} ./docs
 
 ### 5-3. 2023년 또는 2024년 백업 파일만 출력
 ```bash
-cat backup_{2023,2024}.tar
+ls backup_{2023,2024}.tar
 ```
 
 ---
