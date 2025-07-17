@@ -137,17 +137,17 @@ ls -l ????.*
 
 ### 7-1. 현재 디렉터리의 모든 하위 디렉터리 목록 출력
 ```bash
-ls -d ????
+ls -d */
 ```
 
 ### 7-2. `d`로 시작하는 디렉터리만 출력
 ```bash
-ls -d d???
+ls -d [d]*/
 ```
 ls -l
 ### 7-3. 모든 하위 디렉터리에 `readme.txt` 파일 생성
 ```bash
-touch readme.txt ????
+touch ./{docs,logs,temp}/readme.txt
 ```
 
 ---
