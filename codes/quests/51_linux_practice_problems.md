@@ -83,10 +83,9 @@ backup.sh 파일을 만들어 다음 기능을 수행하는 스크립트를 작�
 
 **명령어를 작성하세요:**
 ```shell
-nano backup.sh
-date && \
-echo "백업을 시작합니다." && \
-ls
+echo date >> backup.sh && \
+echo echo Backup is starting now >> backup.sh && \
+echo find . -maxdepth 1 -type f >> backup.sh
 ./backup.sh
 ```
 
@@ -120,7 +119,7 @@ chmod 100 backup.sh
 
 **명령어를 작성하세요:**
 ```shell
-mkdir -p new/project/ && \
+mkdir -p ./new/project/ && \
 cd ./new/project
 ```
 \# new\_project 디렉터리 생성 후 성공하면 이동
@@ -142,11 +141,10 @@ nano test.txt
 
 **명령어를 작성하세요:**
 ```shell
-mkdir -p ./quick/ && \
-cd ./quick/ && \
-echo echo "Hello World" >> ./test.sh && \
-chmod 700 test.sh && \
-./test.sh
+mkdir -p ./quick && \
+> echo echo 'Hello World' >> ./quick/test.sh && \
+> chmod 700 ./quick/test.sh && \
+> ./quick/test.sh
 ```
 \# quick\_test.sh 파일에 "echo 'Hello World'" 내용 저장 후 실행 권한 부여 후 실행
 
@@ -159,9 +157,8 @@ test\_script.sh 파일을 생성하고 소유자에게만 모든 권한을 부�
 **명령어를 작성하세요:**
 ```shell
 mkdir test && \
-cd ./test && \
-touch script.sh && \
-chmod 700 script.sh
+> touch ./test/script.sh && \
+> chmod 700 ./test/script.sh
 ```
 \# test\_script.sh 파일 생성
 
@@ -173,7 +170,7 @@ test\_script.sh 파일에 그룹 사용자에게 읽기 및 실행 권한을 추
 
 **명령어를 작성하세요:**
 ```shell
-chmod 750 script.sh # 사용자에게 모든 권한 유지
+chmod 750 ./test/script.sh # 사용자에게 모든 권한 유지
 ```
 \# 그룹에 읽기, 실행 권한 추가 (750)
 
@@ -183,7 +180,7 @@ chmod 750 script.sh # 사용자에게 모든 권한 유지
 
 **명령어를 작성하세요:**
 ```shell
-ls -l script.sh
+ls -l ./test/script.sh
 ```
 \# 파일 권한 확인
 
@@ -193,7 +190,7 @@ test\_script.sh 파일에서 모든 사용자의 실행 권한을 제거하세�
 
 **명령어를 작성하세요:**
 ```shell
-chmod 640 script.sh # 실행 권한만 제거
+chmod 640 ./test/script.sh # 실행 권한만 제거
 ```
 \# 모든 사용자의 실행 권한 제거
 
@@ -209,10 +206,9 @@ chmod 640 script.sh # 실행 권한만 제거
 
 **작성할 스크립트 내용:**
 ```shell
-mkdir -p ./logs && \
-touch ./logs/setup.log && \
-echo date >> ./logs/setup.log && \
-echo "설정 완료"
+echo 'mkdir -p ./logs/' > setup.sh && \
+echo 'date >> ./logs/setup.log' >> setup.sh && \
+echo 'echo '설정 완료' >> ./logs/setup.log' >> setup.sh
 ```
 \#\!/bin/bash
 
@@ -225,7 +221,8 @@ setup.sh 스크립트를 실행하고, 로그 파일이 제대로 생성되었�
 **명령어를 작성하세요:**
 ```shell
 chmod 500 setup.sh && \
-./setup.sh
+./setup.sh && \
+cat ./logs/setup.log
 ```
 \# setup.sh 실행 권한 부여 후 실행하고, 로그 파일 내용 확인
 
@@ -240,8 +237,8 @@ chmod 500 setup.sh && \
 명령어를 작성하세요:
 ```shell
 mkdir project_logs && \
-chmod 522 project_logs && \
-ls -l project_logs
+chmod 522 project_logs && \ # 나머지는 쓰기 권한 유지
+ls -ld project_logs
 ```
 \# project\_logs 디렉토리 생성 후 User의 쓰기 권한 제거, 권한 확인
 
@@ -257,7 +254,11 @@ ls -l project_logs
 
 * 존재하지 않으면 `"backup 디렉토리가 없습니다"` 메시지 출력
 ```shell
-if [ test ]
+if [ -d "backup" ] ; then
+        touch ./backup/checked.txt
+else
+    	echo '"backup 디렉토리가 없습니다"'
+fi
 ```
 
 nano에서 작성할 내용 예시:
@@ -275,7 +276,9 @@ nano에서 작성할 내용 예시:
 
 명령어를 작성하세요:
 ```shell
-
+cd ./project_logs && \
+touch log.txt && \
+echo '"로그 생성 완료"'
 ```
 
 \# 디렉토리 이동 && 파일 생성 && 메시지 출력
@@ -288,7 +291,8 @@ nano에서 작성할 내용 예시:
 
 명령어를 작성하세요:
 ```shell
-
+chmod 100 check_dir.sh # 사용자에게 실행 권한만 부여
+ls -l ./check_dir.sh 
 ```
 
 \# 사용자에게만 실행 권한 부여 및 권한 확인
