@@ -3,7 +3,7 @@
 ## **실습 환경 설정**
 
 **먼저 다음 명령어들을 실행하여 실습 환경을 구성하세요:**
-
+```
 - \# 실습 디렉터리 생성  
 - mkdir permission\_practice  
 - cd permission\_practice  
@@ -58,7 +58,7 @@
 -   
 - echo "실습 환경이 구성되었습니다\!"  
 - tree permission\_practice  
-    
+```    
   ---
 
   ## **1\. 기본 권한 설정**
@@ -72,6 +72,7 @@
 * `company/departments/dev/build.sh`: 개발팀만 실행 가능
 
 **명령어를 작성하세요:**
+```bash
 [root@localhost permission_practice]# chgrp developers company/departments/dev/
 [root@localhost permission_practice]# chmod 770 company/departments/dev/
 
@@ -80,8 +81,9 @@
 
 [root@localhost permission_practice]# chgrp developers company/departments/dev/build.sh
 [root@localhost permission_practice]# chmod 050 company/departments/dev/build.sh  # 실행하려면 읽기 권한도 필요
-
+```
 - \# 1-1 답안 작성란  
+```bash
 [root@localhost permission_practice]# ls -l company/departments/
 total 0
 drwxrwx---. 2 root developers 70 Jul 21 16:50 dev
@@ -95,7 +97,7 @@ drwxrwx---. 2 root developers 70 Jul 21 16:50 dev
 
 [bob@localhost permission_practice]$ ./company/departments/dev/build.sh 
 Build script
-
+```
 
 
   ### **1-2. 개인 디렉터리 보안 설정**
@@ -107,6 +109,7 @@ Build script
 * `private/bob/config.json`: bob만 읽기/쓰기 가능
 
 **명령어를 작성하세요:**
+```bash
 [root@localhost permission_practice]# chown alice private/alice/
 [root@localhost permission_practice]# chmod 700 private/alice/
 
@@ -117,7 +120,9 @@ Build script
 
 [root@localhost permission_practice]# chown bob private/bob/config.json 
 [root@localhost permission_practice]# chmod 600 private/bob/config.json 
+```
 - \# 1-2 답안 작성란  
+```bash
 [diana@localhost permission_practice]$ cd private/alice/
 bash: cd: private/alice/: Permission denied
 
@@ -126,6 +131,7 @@ cat: private/alice/personal.txt: Permission denied
 
 [diana@localhost permission_practice]$ cat private/bob/config.json 
 cat: private/bob/config.json: Permission denied
+```
   ---
 
   ## **2\. 그룹 기반 권한 관리**
@@ -139,6 +145,7 @@ cat: private/bob/config.json: Permission denied
 * `shared/tools/`: 모든 사용자가 읽기 가능, developers 그룹만 실행 가능
 
 **명령어를 작성하세요:**
+```bash
 [root@localhost permission_practice]# usermod -aG dev_man bob
 [root@localhost permission_practice]# usermod -aG dev_man alice
 [root@localhost permission_practice]# usermod -aG dev_man charlie
@@ -150,22 +157,19 @@ cat: private/bob/config.json: Permission denied
 [root@localhost permission_practice]# chmod 040 shared/resources/
 
 [root@localhost permission_practice]# chgrp developers shared/tools/
-[root@localhost permission_practice]# chmod 074 shared/tools/
+[root@localhost permission_practice]# chmod 454 shared/tools/
+```
 - \# 2-1 답안 작성란  
-
+```bash
 [eve@localhost permission_practice]$ ls shared/documents/
 ls: cannot open directory 'shared/documents/': Permission denied
 
 [eve@localhost permission_practice]$ cd shared/resources/
 bash: cd: shared/resources/: Permission denied
 
-[eve@localhost permission_practice]$ ls -l shared/tools/
-ls: cannot access 'shared/tools/deploy.sh': Permission denied
-ls: cannot access 'shared/tools/backup.sh': Permission denied
-total 0
--????????? ? ? ? ?            ? backup.sh
--????????? ? ? ? ?            ? deploy.sh
-
+[eve@localhost permission_practice]$ ls -ld shared/tools/
+dr--r-xr--. 2 root developers 40 Jul 21 21:09 shared/tools/
+```
 
   ### **2-2. 프로젝트별 협업 권한**
 
@@ -175,7 +179,7 @@ total 0
 * `company/projects/project_b/`: alice와 bob만 접근 가능하도록 설정
 
 **명령어를 작성하세요:**
-
+```bash
 [root@localhost permission_practice]# chgrp developers company/projects/project_a
 
 [root@localhost permission_practice]# groupadd albob
@@ -183,13 +187,14 @@ total 0
 [root@localhost permission_practice]# usermod -aG albob alice
 [root@localhost permission_practice]# usermod -aG albob bob
 [root@localhost permission_practice]# chmod 070 company/projects/project_b
-
+```
 
 - \# 2-2 답안 작성란  
+```bash
 -   [bob@localhost permission_practice]$ cd company/projects/project_a
 -   [eve@localhost permission_practice]$ cd company/projects/project_b
 bash: cd: company/projects/project_b: Permission denied
-
+```
     
   ---
 
@@ -201,13 +206,20 @@ bash: cd: company/projects/project_b: Permission denied
 
 * `shared/tools/deploy.sh`: SetGID 설정으로 developers 그룹 권한으로 실행  
 * `company/departments/hr/salaries.txt`: SetUID 설정 (실제 환경에서는 권장하지 않지만 실습용)
+```bash
+**명령어를 작성하세요:** [root@localhost permission_practice]# chmod 2070 shared/tools/deploy.sh
+[root@localhost permission_practice]# chmod 4700 company/departments/hr/salaries.txt 
+```
 
-**명령어를 작성하세요:**
 
 - \# 3-1 답안 작성란  
--   
-- 
+```bash
+[root@localhost permission_practice]# ls -l shared/tools/deploy.sh 
+----rws---. 1 root developers 37 Jul 21 21:09 shared/tools/deploy.sh
 
+[root@localhost permission_practice]# ls -l company/departments/hr/salaries.txt 
+-rws------. 1 diana managers 25 Jul 21 21:09 company/departments/hr/salaries.txt
+```
 
   ### **3-2. 숫자 표기법으로 복합 권한 설정**
 
@@ -216,13 +228,14 @@ bash: cd: company/projects/project_b: Permission denied
 * `company/departments/finance/budget.xlsx`: 소유자(rw-), 그룹(r--), 기타(---)  
 * `shared/documents/manual.pdf`: 소유자(rw-), 그룹(r--), 기타(r--)  
 * `logs/2024/06/system.log`: 소유자(rw-), 그룹(r--), 기타(---)
-
+```bash
 **명령어를 작성하세요:** 
 [root@localhost permission_practice]# chmod 640 company/departments/finance/budget.xlsx
 [root@localhost permission_practice]# chmod 644 shared/documents/manual.pdf 
 [root@localhost permission_practice]# chmod 640 logs/2024/06/system.log 
-
+```
 - \# 3-2 답안 작성란  
+```bash
 [eve@localhost permission_practice]$ cat company/departments/finance/budget.xlsx 
 cat: company/departments/finance/budget.xlsx: Permission denied
 
@@ -231,7 +244,7 @@ bash: ./shared/documents/manual.pdf: Permission denied
 
 [eve@localhost permission_practice]$ cat logs/2024/06/system.log 
 cat: logs/2024/06/system.log: Permission denied
-    
+```    
   ---
 
   ## **4\. 소유권 및 그룹 관리**
@@ -245,7 +258,7 @@ cat: logs/2024/06/system.log: Permission denied
 * `shared/tools/` 디렉터리와 모든 하위 파일: root 소유, developers 그룹
 
 **명령어를 작성하세요:**
-
+```bash
 [root@localhost permission_practice]# chown -R alice company/departments/dev/
 [root@localhost permission_practice]# chgrp -R developers company/departments/dev/
 
@@ -253,12 +266,40 @@ cat: logs/2024/06/system.log: Permission denied
 [root@localhost permission_practice]# chgrp -R managers company/departments/hr/
 
 [root@localhost permission_practice]# chgrp -R developers shared/tools/
-
+```
 
 - \# 4-1 답안 작성란  
--   
-- 
+```bash
+drwxr-xr-x. 2 alice developers 123 Jul 21 21:09 dev
+[root@localhost permission_practice]# ls -l company/departments/dev/
+total 12
+-rw-r--r--. 1 alice developers 18 Jul 21 21:09 api.conf
+-rw-r--r--. 1 alice developers 32 Jul 21 21:09 build.sh
+-rw-r--r--. 1 alice developers  0 Jul 21 21:09 config.py
+-rw-r--r--. 1 alice developers 24 Jul 21 21:09 database.conf
+-rw-r--r--. 1 alice developers  0 Jul 21 21:09 main.py
+-rw-r--r--. 1 alice developers  0 Jul 21 21:09 README.md
+-rw-r--r--. 1 alice developers  0 Jul 21 21:09 test.py
 
+
+[root@localhost permission_practice]# ls -ld company/departments/hr/
+drwxr-xr-x. 2 diana managers 89 Jul 21 21:09 company/departments/hr/
+
+[root@localhost permission_practice]# ls -l company/departments/hr/
+total 4
+-rw-r--r--. 1 diana managers  0 Jul 21 21:09 contracts.pdf
+-rw-r--r--. 1 diana managers  0 Jul 21 21:09 employees.xlsx
+-rw-r--r--. 1 diana managers  0 Jul 21 21:09 policies.txt
+-rw-r--r--. 1 diana managers 25 Jul 21 21:09 salaries.txt
+
+[root@localhost permission_practice]# ls -ld shared/tools/
+drwxr-xr-x. 2 root developers 40 Jul 21 21:09 shared/tools/
+
+[root@localhost permission_practice]# ls -l shared/tools/
+total 8
+-rw-r--r--. 1 root developers 33 Jul 21 21:09 backup.sh
+-rw-r--r--. 1 root developers 37 Jul 21 21:09 deploy.sh
+```
 
   ### **4-2. 그룹 전용 변경**
 
@@ -268,12 +309,20 @@ cat: logs/2024/06/system.log: Permission denied
 * `backup/daily/`: developers 그룹으로 변경
 
 **명령어를 작성하세요:**
+```bash
+[root@localhost permission_practice]# chgrp managers company/projects/
+[root@localhost permission_practice]# chgrp developers backup/daily/
+```
 
 - \# 4-2 답안 작성란  
--   
--   
--   
--   
+```bash
+[root@localhost permission_practice]# ls -ld company/projects/
+drwxr-xr-x. 5 root managers 57 Jul 21 21:09 company/projects/
+
+[root@localhost permission_practice]# ls -ld backup/daily/
+drwxr-xr-x. 2 root developers 60 Jul 21 21:09 backup/daily/
+```
+
 
   ## **8\. 실행 권한 및 스크립트 관리**
 
@@ -286,10 +335,33 @@ cat: logs/2024/06/system.log: Permission denied
 * `company/departments/dev/build.sh`: 소유자만 실행 가능
 
 **명령어를 작성하세요:**
+```bash
+[root@localhost permission_practice]# chgrp developers shared/tools/deploy.sh 
+[root@localhost permission_practice]# chmod 050 shared/tools/deploy.sh 
+
+[root@localhost permission_practice]# setfacl -m u:alice:5 shared/tools/backup.sh 
+[root@localhost permission_practice]# setfacl -m u:diana:5 shared/tools/backup.sh 
+
+[root@localhost permission_practice]# chmod 500 company/departments/dev/build.sh 
+```
 
 - \# 8-1 답안 작성란  
--   
-- 
+```bash
+[alice@localhost permission_practice]$ ./shared/tools/deploy.sh 
+Deployment script
+
+[alice@localhost permission_practice]$ ./shared/tools/backup.sh 
+Backup script
+[diana@localhost permission_practice]$ ./shared/tools/backup.sh 
+Backup script
+[bob@localhost permission_practice]$ ./shared/tools/backup.sh
+bash: ./shared/tools/backup.sh: Permission denied
+
+[bob@localhost permission_practice]$ ./company/departments/dev/build.sh
+bash: ./company/departments/dev/build.sh: Permission denied
+```
+
+
 
 
   ### **8-2. 시스템 스크립트 보안 설정**
@@ -301,10 +373,24 @@ cat: logs/2024/06/system.log: Permission denied
 * 실행 로그를 남기도록 권한 설정
 
 **명령어를 작성하세요:**
-
+```bash
+nano system_check.sh
+echo date >> log.txt
+echo whoami >> log.txt
+chmod 4755 system_check.sh
+chmod 722 log.txt
+```
 - \# 8-2 답안 작성란  
--   
--   
+```bash
+ [root@localhost permission_practice]# ./log.txt
+Mon Jul 21 09:53:57 PM KST 2025
+Mon Jul 21 09:53:57 PM KST 2025
+root
+Mon Jul 21 09:53:57 PM KST 2025
+root
+```
+
+   
     
   ---
 
@@ -320,11 +406,33 @@ cat: logs/2024/06/system.log: Permission denied
 * `company/projects/` : 프로젝트 참여자만 해당 프로젝트 접근 가능
 
 **명령어를 작성하세요:**
+```bash
+[root@localhost permission_practice]# chmod 744 company/
+
+[root@localhost permission_practice]# groupadd finance
+[root@localhost permission_practice]# groupadd marketing
+[root@localhost permission_practice]# chgrp finance company/departments/finance/
+[root@localhost permission_practice]# chgrp marketing company/departments/marketing/
+
+[root@localhost permission_practice]# chgrp managers company/departments/finance/
+```
 
 - \# 9-1 답안 작성란  
--   
-- 
+```bash
+[root@localhost permission_practice]# ls -ld company/
+drwxr--r--. 4 root root 41 Jul 21 21:09 company/
+  
+ 
+[root@localhost permission_practice]# ls -l company/departments/
+total 0
+drwxr-xr-x. 2 alice developers 123 Jul 21 21:09 dev
+drwxr-xr-x. 2 root  finance     64 Jul 21 21:09 finance
+drwxr-xr-x. 2 diana managers    89 Jul 21 21:09 hr
+drwxr-xr-x. 2 root  marketing    6 Jul 21 21:09 marketing
 
+[root@localhost permission_practice]# ls -ld company/departments/finance/
+drwxr-xr-x. 2 root managers 64 Jul 21 21:09 company/departments/finance/
+```
 
   ### **9-2. 임시 작업 공간 설정**
 
@@ -335,9 +443,14 @@ cat: logs/2024/06/system.log: Permission denied
 * 1주일 후 자동 삭제되도록 권한 설정 (cron 작업용)
 
 **명령어를 작성하세요:**
+```bash
+[root@localhost permission_practice]# mkdir temp/
+[root@localhost permission_practice]# chmod 1777 temp/
 
+.. cron 사용법 공부 필요 .. 
+```
 - \# 9-2 답안 작성란  
--   
+
 -   
     
   ---
@@ -352,13 +465,13 @@ cat: logs/2024/06/system.log: Permission denied
 * `backup/weekly/` : managers만 접근 가능  
 * `backup/monthly/` : root만 접근 가능  
 * 모든 백업 파일은 생성 후 읽기 전용으로 자동 변경
-
+```bash
 **명령어를 작성하세요:**
 
+```
 - \# 10-1 답안 작성란  
+```bash
 -   
--   
-    
-  ---
+```
 
   
