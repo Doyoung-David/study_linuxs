@@ -232,9 +232,9 @@ Sara
 Lisa
 ```
 ## 9-2. system.log 파일에서 에러와 경고 메시지의 총 개수를 확인하세요.
-### grep "INFO" system.log | cut -d" " -f3 | uniq -c && grep "ERROR" system.log | cut -d" " -f3 | uniq -c
+### grep "WARNING" system.log | cut -d" " -f3 | uniq -c && grep "ERROR" system.log | cut -d" " -f3 | uniq -c
 ```shell
-      3 INFO
+      2 WARNING
       2 ERROR
 ```
 ## 9-3. scores.txt 파일에서 150점 이상인 점수의 개수를 확인하세요.
