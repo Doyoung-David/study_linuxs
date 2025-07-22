@@ -243,7 +243,7 @@ Lisa
 
 ```
 ## 9-4. employees.txt 파일에서 나이를 기준으로 정렬한 후 가장 나이가 많은 직원의 이름을 출력하세요.
-### sort -n employees.txt | tail -n1
+### sort -t: -k2 -n employees.txt | tail -n1
 ```shell
 Tom:35:Daegu:Developer
 ```
