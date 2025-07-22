@@ -14,9 +14,7 @@
 ```shell
 nano .bash_profile
 echo "Welcome, $USER"
-
 ```
-
 ```shell
 [doyoung@localhost ~]$ su - doyoung
 Password: 
@@ -77,7 +75,8 @@ nano .bash_profile
 mkdir -p ~/Downloads/auto_created/logs/ && \
 touch ~/Downloads/auto_created/info.txt && \
 touch ~/Downloads/auto_created/logs/log.txt
-
+```
+```shell
 [doyoung@localhost ~]$ su - doyoung
 Password: 
 [doyoung@localhost ~]$ tree ./Downloads/
@@ -86,9 +85,6 @@ Password:
     ├── info.txt
     └── logs
         └── log.txt
-
-
-  ---
 ```
   ### **🔹 문제 4\. `/etc/profile`을 수정하여, 로그인 시 모든 사용자에게 공지 메시지 `/etc/login_notice.txt`를 출력하도록 설정하시오.**
 
@@ -104,7 +100,7 @@ Password:
 
   ---
 
-* ```shell
+```shell
 sudo nano /etc/login_notice.txt
 "Don't be sad"
 sudo nano /etc/profile
