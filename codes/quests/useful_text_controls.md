@@ -1,12 +1,12 @@
-리눅스 텍스트 처리 명령어 실습 문제
-실습 환경 설정
-먼저 다음 명령어를 실행하여 실습 환경을 만들어보세요:
+# 리눅스 텍스트 처리 명령어 실습 문제
+## 실습 환경 설정
+## 먼저 다음 명령어를 실행하여 실습 환경을 만들어보세요:
 ```
 mkdir text_processing_practice && \
 cd text_processing_practice
 ```
 
-# 실습용 파일들 생성
+## 실습용 파일들 생성
 ```
 echo -e "apple\nbanana\ncherry\napple\ndate\nbanana" > fruits.txt && \
 echo -e "100\n50\n200\n150\n75\n300\n25" > scores.txt && \
