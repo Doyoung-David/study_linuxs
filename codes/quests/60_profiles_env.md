@@ -32,7 +32,7 @@ Welcome, doyoung
 
 ```shell
 nano .bash_profile
-rm ~/Downloads/*.*
+rm ~/Downloads/*
 ```
 ```shell
 [doyoung@localhost ~]$ cd ./Downloads/
