@@ -157,7 +157,7 @@ Seoul:Analyst
 
 # 문제 6: tr 명령어 활용 (중급)
 ## 6-1. "Hello World Linux" 문자열의 모든 대문자를 소문자로 변환하세요.
-### echo "Hello World Linux" | tr "Hello World Linux" "hello world linux"
+### echo "Hello World Linux" | tr "HWL" "hwl"
 ```shell
 hello world linux
 ```
