@@ -277,11 +277,11 @@ Lisa:28:Seoul:Analyst
 
 # 문제 11: 종합 문제 (고급)
 ## 11-1. employees.txt 파일에서 각 도시별 직원 수를 계산하여 많은 순서대로 출력하세요.
-### sort -t: -k3 employees.txt | cut -d":" -f3 | uniq -c
+### sort -t: -k3 employees.txt | cut -d":" -f3 | uniq -c | sort -rn
 ```shell
-      1 Busan
-      1 Daegu
       3 Seoul
+      1 Daegu
+      1 Busan
 ```
 ## 11-2. system.log 파일에서 시간대별(시간 단위) 로그 개수를 계산하세요.
 ### cut -d" " -f2 system.log | cut -d":" -f1 | uniq -c
