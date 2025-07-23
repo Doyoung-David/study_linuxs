@@ -10,4 +10,4 @@ Rocky(VMware 활용)를 통한 리눅스 터미널 명령어 연습
 - [Permission & IF](codes/quests/51_linux_practice_problems.md)
 - [Profile](codes/quests/60_profiles_env.md)
 - [Text Controls](codes/quests/70_useful_text_controls.md)
-- [Variables](codes/quests/80_1_shell_variables_aguments.md)
+- [Variables](codes/quests/80_1_shell_script_variables.md)
