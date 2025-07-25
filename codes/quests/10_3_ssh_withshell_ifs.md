@@ -99,7 +99,7 @@ cut, grep, sort, wc 명령어 활용
 # 스크립트 (4번 등급별 학생수는 수는 다 치기엔 너무 많음.. 뭔가 다른 방법이 있을 것 같음)
 read -p "Enter the Subject: " subj
 # 있는 과목인지 판별
-if ! grep -q "$subj" ./students.txt; then
+if ! grep "$subj" ./students.txt; then
         echo "No such subjects"
         return
 else
