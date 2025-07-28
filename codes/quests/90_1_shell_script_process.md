@@ -38,11 +38,9 @@ if [ $1 == "start" ]; then
 elif [ $1 == "stop" ]; then
         PID_V=$(ps aux | grep "http.server 8000 --bind" | cut -d" " -f6 | head -n 1)
         kill -9 "$PID_V"
-
 elif [ $1 == "status" ]; then
         PID_V=$(ps aux | grep "http.server 8000 --bind" | cut -d" " -f6 | head -n 1)
-        echo "서버 실행중입니다. PID = $PID_V"
-        
+        echo "서버 실행중입니다. PID = $PID_V"  
 elif [ $1 == "tail_log" ]; then
         cat view.log
 else
