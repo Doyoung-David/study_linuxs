@@ -32,6 +32,7 @@
 * 변수 `PORT`, `PID`, `LOGFILE` 등을 정의해 구성 가능
 
 ```bash
+# 다 적고, 복기해보니 변수를 최상단에 작성하면 중복 작성 불필요.
 if [ $1 == "start" ]; then
         nohup python3 -m http.server 8000 --bind 0.0.0.0 &>> view.log
 elif [ $1 == "stop" ]; then
